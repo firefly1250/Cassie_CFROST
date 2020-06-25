@@ -23,8 +23,12 @@ After download, you should set up [FROST](https://github.com/ayonga/frost-dev) a
 To run the optimization using C-FROST, first needs to set up the problem in MATLAB using FROST and generate all required functions. In this example, we put functions for system dynamics into a separate directory, and compile them as a static library that can be linked to the main optimization problem. This way, you do not need to re-compile these functions every time after you change the optimization constraints.
 
 ## Generate functions for system dynamics ##
-
-First, run [`gen_lib.m`](https://github.com/UMich-BipedLab/Cassie_CFROST/blob/master/Cassie_Example/cassie_dynamics_library/gen_lib.m) script in MATLAB. This process may take a while to finish. By default, we drop the velocity terms ($C(q)\dot{q}$) from the dynamics equation. To include them, set `OMIT_CORIOLIS` to `false` in `gen_lib.m` script, and re-run the script. After successfully run the script in matlab, you should find three new directories, `src`, `include`, and `mex`.
+First, create a directory
+``` shell
+cd ~/Cassie_CFROST/Cassie_Example/cassie_dynamics-library
+mkdir mex
+```
+Then, run [`gen_lib.m`](https://github.com/UMich-BipedLab/Cassie_CFROST/blob/master/Cassie_Example/cassie_dynamics_library/gen_lib.m) script in MATLAB. This process may take a while to finish. By default, we drop the velocity terms ($C(q)\dot{q}$) from the dynamics equation. To include them, set `OMIT_CORIOLIS` to `false` in `gen_lib.m` script, and re-run the script. After successfully run the script in matlab, you should find three new directories, `src`, `include`, and `mex`.
 
 In terminal, run the following to compile the static library:
 ``` shell
